@@ -78,6 +78,9 @@ type CheckoutForm = {
   phone: string;
   address: string;
   city: string;
+  cardNumber: string;
+  cardExpiry: string;
+  cardCvc: string;
 };
 
 const LOGIN_CREDENTIALS = {
@@ -219,6 +222,9 @@ const checkoutInitialState: CheckoutForm = {
   phone: "",
   address: "",
   city: "",
+  cardNumber: "",
+  cardExpiry: "",
+  cardCvc: "",
 };
 
 export default function App() {
@@ -825,26 +831,20 @@ export default function App() {
             <MiniProductColumn title="Top Rated" products={topRated} onAddToCart={addToCart} onBuyNow={buyNow} />
           </section>
 
-          <section className="mt-9 rounded-[28px] bg-[linear-gradient(135deg,#ff6a00_0%,#ff8f32_100%)] px-6 py-8 text-white shadow-[0_18px_50px_rgba(255,106,0,0.16)] sm:px-8 lg:px-10" id="become-a-seller">
-            <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+          <section className="mt-9 rounded-[28px] bg-white px-6 py-8 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:px-8 lg:px-10" id="become-a-seller">
+            <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em]">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-[#ff6a00]">
                   <Store className="h-4 w-4" /> Become a Seller
                 </div>
-                <h2 className="mt-4 text-3xl font-black sm:text-5xl">Grow your business with ORBI marketplace</h2>
-                <p className="mt-4 max-w-3xl text-lg text-white/85 sm:text-xl">
-                  Reach more customers, publish your catalog fast, and start dropshipping with a storefront that now has a real add-to-cart and checkout flow.
+                <h2 className="mt-4 text-3xl font-black text-[#1d1d1d] sm:text-5xl">Join ORBI as a Shopkeeper</h2>
+                <p className="mt-3 max-w-2xl text-lg text-[#667085]">
+                  Register your shop, set up your storefront, and start selling to customers worldwide. Card payment only — fast, secure, and international.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4">
-                <button onClick={() => setCurrentView("cart")} className="rounded-xl bg-white px-6 py-4 text-lg font-black text-[#ff6a00] shadow-xl">
-                  Open Cart
-                </button>
-                <button onClick={openHome} className="rounded-xl border border-white/30 px-6 py-4 text-lg font-bold text-white">
-                  Continue Shopping
-                </button>
-              </div>
             </div>
+
+            <SellerJoinForm />
           </section>
         </main>
       ) : currentView === "cart" ? (
@@ -1343,6 +1343,82 @@ function CheckoutPage({
                 />
               </Field>
 
+              {/* Card Payment Section */}
+              <div className="rounded-[20px] border border-[#ffe0c8] bg-[#fff8f2] p-5">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="grid h-10 w-10 place-items-center rounded-full bg-[#ff6a00] text-white">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="text-base font-black text-[#1f1f1f]">Card Payment</div>
+                    <div className="text-sm text-[#667085]">Visa · Mastercard · American Express</div>
+                  </div>
+                  <div className="ml-auto flex items-center gap-2">
+                    <span className="rounded-md bg-[#1a1f71] px-2 py-1 text-xs font-black text-white">VISA</span>
+                    <span className="rounded-md bg-[#eb001b] px-2 py-1 text-xs font-black text-white">MC</span>
+                    <span className="rounded-md bg-[#2e77bc] px-2 py-1 text-xs font-black text-white">AMEX</span>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <Field label="Card Number">
+                    <input
+                      required
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={19}
+                      value={form.cardNumber}
+                      onChange={(event) => {
+                        const raw = event.target.value.replace(/\D/g, "").slice(0, 16);
+                        const formatted = raw.replace(/(.{4})/g, "$1 ").trim();
+                        onChange({ ...form, cardNumber: formatted });
+                      }}
+                      className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg tracking-widest outline-none focus:border-[#ff6a00]"
+                      placeholder="1234 5678 9012 3456"
+                    />
+                  </Field>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <Field label="Expiry Date">
+                      <input
+                        required
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={5}
+                        value={form.cardExpiry}
+                        onChange={(event) => {
+                          const raw = event.target.value.replace(/\D/g, "").slice(0, 4);
+                          const formatted = raw.length > 2 ? `${raw.slice(0, 2)}/${raw.slice(2)}` : raw;
+                          onChange({ ...form, cardExpiry: formatted });
+                        }}
+                        className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+                        placeholder="MM/YY"
+                      />
+                    </Field>
+                    <Field label="CVC / CVV">
+                      <input
+                        required
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={4}
+                        value={form.cardCvc}
+                        onChange={(event) => {
+                          const raw = event.target.value.replace(/\D/g, "").slice(0, 4);
+                          onChange({ ...form, cardCvc: raw });
+                        }}
+                        className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+                        placeholder="123"
+                      />
+                    </Field>
+                  </div>
+                </div>
+
+                <p className="mt-3 flex items-center gap-2 text-sm text-[#667085]">
+                  <ShieldCheck className="h-4 w-4 text-[#22c55e]" />
+                  Your card details are encrypted and secure.
+                </p>
+              </div>
+
               <button type="submit" className="w-full rounded-xl bg-[#ff6a00] px-6 py-4 text-lg font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)]">
                 Place Order Successfully
               </button>
@@ -1442,5 +1518,195 @@ function FooterGroup({ title, items }: { title: string; items: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+type SellerForm = {
+  shopName: string;
+  ownerName: string;
+  email: string;
+  phone: string;
+  country: string;
+  cardNumber: string;
+  cardExpiry: string;
+  cardCvc: string;
+};
+
+const sellerFormInitial: SellerForm = {
+  shopName: "",
+  ownerName: "",
+  email: "",
+  phone: "",
+  country: "",
+  cardNumber: "",
+  cardExpiry: "",
+  cardCvc: "",
+};
+
+function SellerJoinForm() {
+  const [form, setForm] = useState<SellerForm>(sellerFormInitial);
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+    setForm(sellerFormInitial);
+    setTimeout(() => setSubmitted(false), 6000);
+  }
+
+  if (submitted) {
+    return (
+      <div className="rounded-[24px] bg-[#e9fff0] p-10 text-center">
+        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-[#22c55e] text-white">
+          <CheckCircle2 className="h-10 w-10" />
+        </div>
+        <h3 className="mt-5 text-3xl font-black text-[#1d1d1d]">Application Submitted!</h3>
+        <p className="mt-3 text-lg text-[#4b5563]">
+          Your shopkeeper application has been received. We'll review it and get back to you within 24–48 hours.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="grid gap-8 lg:grid-cols-2">
+      {/* Shop Details */}
+      <div className="space-y-5 rounded-[24px] border border-[#f0f0f0] p-6 shadow-sm">
+        <h3 className="text-xl font-black text-[#1f1f1f]">Shop Information</h3>
+
+        <Field label="Shop / Business Name">
+          <input
+            required
+            value={form.shopName}
+            onChange={(e) => setForm({ ...form, shopName: e.target.value })}
+            className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+            placeholder="e.g. My Awesome Store"
+          />
+        </Field>
+
+        <Field label="Owner Full Name">
+          <input
+            required
+            value={form.ownerName}
+            onChange={(e) => setForm({ ...form, ownerName: e.target.value })}
+            className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+            placeholder="Enter your full name"
+          />
+        </Field>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Email Address">
+            <input
+              required
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+              placeholder="you@example.com"
+            />
+          </Field>
+          <Field label="Phone Number">
+            <input
+              required
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+              placeholder="+1 234 567 8900"
+            />
+          </Field>
+        </div>
+
+        <Field label="Country">
+          <input
+            required
+            value={form.country}
+            onChange={(e) => setForm({ ...form, country: e.target.value })}
+            className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+            placeholder="e.g. United States"
+          />
+        </Field>
+      </div>
+
+      {/* Card Payment */}
+      <div className="space-y-5 rounded-[24px] border border-[#ffe0c8] bg-[#fff8f2] p-6 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-full bg-[#ff6a00] text-white">
+            <ShieldCheck className="h-5 w-5" />
+          </div>
+          <div>
+            <h3 className="text-xl font-black text-[#1f1f1f]">Card Payment</h3>
+            <p className="text-sm text-[#667085]">International card transactions only</p>
+          </div>
+          <div className="ml-auto flex items-center gap-2">
+            <span className="rounded-md bg-[#1a1f71] px-2 py-1 text-xs font-black text-white">VISA</span>
+            <span className="rounded-md bg-[#eb001b] px-2 py-1 text-xs font-black text-white">MC</span>
+            <span className="rounded-md bg-[#2e77bc] px-2 py-1 text-xs font-black text-white">AMEX</span>
+          </div>
+        </div>
+
+        <Field label="Card Number">
+          <input
+            required
+            type="text"
+            inputMode="numeric"
+            maxLength={19}
+            value={form.cardNumber}
+            onChange={(e) => {
+              const raw = e.target.value.replace(/\D/g, "").slice(0, 16);
+              const formatted = raw.replace(/(.{4})/g, "$1 ").trim();
+              setForm({ ...form, cardNumber: formatted });
+            }}
+            className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg tracking-widest outline-none focus:border-[#ff6a00]"
+            placeholder="1234 5678 9012 3456"
+          />
+        </Field>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Expiry Date">
+            <input
+              required
+              type="text"
+              inputMode="numeric"
+              maxLength={5}
+              value={form.cardExpiry}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/\D/g, "").slice(0, 4);
+                const formatted = raw.length > 2 ? `${raw.slice(0, 2)}/${raw.slice(2)}` : raw;
+                setForm({ ...form, cardExpiry: formatted });
+              }}
+              className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+              placeholder="MM/YY"
+            />
+          </Field>
+          <Field label="CVC / CVV">
+            <input
+              required
+              type="text"
+              inputMode="numeric"
+              maxLength={4}
+              value={form.cardCvc}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/\D/g, "").slice(0, 4);
+                setForm({ ...form, cardCvc: raw });
+              }}
+              className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+              placeholder="123"
+            />
+          </Field>
+        </div>
+
+        <p className="flex items-center gap-2 text-sm text-[#667085]">
+          <ShieldCheck className="h-4 w-4 text-[#22c55e]" />
+          Your card details are encrypted and secure. No local payment methods accepted.
+        </p>
+
+        <button
+          type="submit"
+          className="mt-2 w-full rounded-xl bg-[#ff6a00] px-6 py-4 text-lg font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)]"
+        >
+          Submit Shopkeeper Application
+        </button>
+      </div>
+    </form>
   );
 }
