@@ -501,9 +501,9 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-4 py-6 lg:flex-nowrap lg:gap-8">
             <div className="flex w-full items-center justify-between lg:w-auto lg:min-w-[300px]">
               <button onClick={openHome} className="flex items-center gap-3 text-left text-white">
-                <div className="grid h-16 w-16 place-items-center rounded-full border-[6px] border-white/95 text-2xl font-black">O</div>
+                <div className="grid h-12 w-12 place-items-center rounded-full border-[4px] border-white/95 text-xl font-black sm:h-14 sm:w-14 sm:border-[5px] sm:text-2xl lg:h-16 lg:w-16 lg:border-[6px]">O</div>
                 <div>
-                  <div className="text-4xl font-black tracking-[0.28em]">ORBI</div>
+                  <div className="text-2xl font-black tracking-[0.28em] sm:text-3xl lg:text-4xl">ORBI</div>
                   <div className="-mt-1 text-sm font-semibold tracking-[0.45em] text-white/90">STORE</div>
                 </div>
               </button>
@@ -523,11 +523,11 @@ export default function App() {
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search in Orbi"
-                  className="h-16 w-full px-6 text-lg text-slate-700 outline-none placeholder:text-slate-400"
+                  className="h-12 w-full px-4 text-base text-slate-700 outline-none placeholder:text-slate-400 sm:h-14 sm:px-5 sm:text-lg lg:h-16 lg:px-6"
                 />
                 <button
                   onClick={openHome}
-                  className="grid h-16 w-24 place-items-center bg-[#ff6a00] text-white"
+                  className="grid h-12 w-16 place-items-center bg-[#ff6a00] text-white sm:h-14 sm:w-20 lg:h-16 lg:w-24"
                 >
                   <Search className="h-8 w-8" />
                 </button>
@@ -591,182 +591,180 @@ export default function App() {
       )}
 
       {currentView === "home" ? (
-        <main className="mx-auto max-w-[1800px] px-4 py-6 sm:px-6 lg:px-8">
-          <section className="rounded-[28px] bg-white px-4 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.06)] lg:px-8">
-            <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
-              <button className="inline-flex items-center justify-center gap-3 rounded-xl bg-[#ff7a12] px-7 py-5 text-lg font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)]">
-                <Menu className="h-7 w-7" />
+        <main className="mx-auto max-w-[1800px] px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
+          {/* ── Top Nav Bar ── */}
+          <section className="rounded-2xl bg-white px-3 py-4 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:rounded-[28px] sm:px-6 sm:py-5 lg:px-8">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#ff7a12] px-4 py-3 text-sm font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)] sm:w-auto sm:px-6 sm:py-4 sm:text-base lg:px-7 lg:py-5 lg:text-lg">
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
                 All Categories
               </button>
-
-              <nav className="flex flex-wrap items-center justify-center gap-6 text-[17px] font-semibold text-[#2a2a2a]" id="home">
+              <nav className="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-[#2a2a2a] sm:gap-4 sm:text-base lg:gap-6 lg:text-[17px]" id="home">
                 {navLinks.map((link) => (
-                  <button
-                    key={link.label}
-                    onClick={() => goToSection(link.section)}
-                    className="hover:text-[#ff6a00]"
-                  >
+                  <button key={link.label} onClick={() => goToSection(link.section)} className="hover:text-[#ff6a00]">
                     {link.label}
                   </button>
                 ))}
               </nav>
-
               <button
                 onClick={() => buyNow(featuredHeroItem)}
-                className="inline-flex items-center justify-center rounded-xl bg-[#ff7a12] px-7 py-5 text-lg font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)]"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-[#ff7a12] px-4 py-3 text-sm font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)] sm:w-auto sm:px-6 sm:py-4 sm:text-base lg:px-7 lg:py-5 lg:text-lg"
               >
                 Start Dropshipping
               </button>
             </div>
           </section>
 
-          <section className="mt-6 grid gap-4 xl:grid-cols-[1.2fr_280px]">
-            <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.06)]">
-              <div className="grid min-h-[520px] gap-6 bg-[linear-gradient(120deg,#fff7ef_0%,#ffffff_28%,#ffffff_58%,#ff7a12_58%,#ff6a00_100%)] p-6 lg:grid-cols-[240px_1fr_260px] lg:p-8">
+          {/* ── Hero Slider ── */}
+          <section className="mt-4 grid gap-4 sm:mt-6 xl:grid-cols-[1fr_260px]">
+            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:rounded-[28px]">
+              {/* Hero content */}
+              <div className="bg-[linear-gradient(120deg,#fff7ef_0%,#ffffff_40%,#ff7a12_100%)] p-4 sm:p-6 lg:grid lg:min-h-[480px] lg:grid-cols-[220px_1fr_240px] lg:gap-6 lg:p-8">
+                {/* Left product image — desktop only */}
                 <div className="hidden items-end justify-center lg:flex">
-                  <div className="w-full overflow-hidden rounded-[34px] bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
-                    <img src={featuredHeroItem.image} alt={featuredHeroItem.title} className="h-[330px] w-full rounded-[28px] object-cover" />
+                  <div className="w-full overflow-hidden rounded-[28px] bg-white p-3 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+                    <img src={featuredHeroItem.image} alt={featuredHeroItem.title} className="h-[300px] w-full rounded-[22px] object-cover" />
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center text-center">
-                  <div className="inline-flex rounded-full bg-[#fff2e6] px-5 py-2 text-lg font-black tracking-wide text-[#ff6a00] shadow-sm">
+                {/* Centre text */}
+                <div className="flex flex-col items-center justify-center py-6 text-center lg:py-0">
+                  <div className="inline-flex rounded-full bg-[#fff2e6] px-3 py-1.5 text-xs font-black tracking-wide text-[#ff6a00] shadow-sm sm:px-5 sm:py-2 sm:text-base">
                     {currentSlide.eyebrow}
                   </div>
-                  <h1 className="mt-6 text-5xl font-black uppercase leading-none tracking-wide text-[#0085a6] drop-shadow-[0_4px_3px_rgba(0,0,0,0.2)] sm:text-6xl lg:text-7xl">
+                  <h1 className="mt-4 text-4xl font-black uppercase leading-none tracking-wide text-[#0085a6] drop-shadow-[0_4px_3px_rgba(0,0,0,0.2)] sm:mt-6 sm:text-5xl lg:text-7xl">
                     {currentSlide.heading}
                   </h1>
-                  <p className="mt-5 max-w-3xl text-xl font-semibold text-[#222222] sm:text-2xl">{currentSlide.text}</p>
-                  <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <p className="mt-3 max-w-xs text-sm font-semibold text-[#222222] sm:max-w-xl sm:text-lg lg:text-xl">{currentSlide.text}</p>
+                  <div className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-7 sm:gap-3">
                     <button
                       onClick={() => buyNow(featuredHeroItem)}
-                      className="rounded-full border-[5px] border-white bg-[#ff7a12] px-10 py-5 text-3xl font-black uppercase text-white shadow-[0_14px_30px_rgba(0,0,0,0.2)] transition-transform hover:scale-[1.02]"
+                      className="rounded-full border-[3px] border-white bg-[#ff7a12] px-6 py-3 text-lg font-black uppercase text-white shadow-[0_14px_30px_rgba(0,0,0,0.2)] transition-transform hover:scale-[1.02] sm:border-[5px] sm:px-8 sm:py-4 sm:text-2xl lg:px-10 lg:py-5 lg:text-3xl"
                     >
                       {currentSlide.button}
                     </button>
                     <button
                       onClick={() => setCurrentView("cart")}
-                      className="rounded-full border-[4px] border-white bg-white/80 px-8 py-4 text-xl font-black uppercase text-[#ff6a00] shadow-lg backdrop-blur"
+                      className="rounded-full border-[3px] border-white bg-white/80 px-5 py-3 text-sm font-black uppercase text-[#ff6a00] shadow-lg backdrop-blur sm:border-[4px] sm:px-7 sm:py-4 sm:text-lg"
                     >
                       View Cart
                     </button>
                   </div>
-                  <div className="mt-6 text-3xl font-black text-[#ff6a00]">www.orbi.pk</div>
-                  <div className="mt-8 flex items-center gap-3">
+                  <div className="mt-4 text-xl font-black text-[#ff6a00] sm:mt-5 sm:text-2xl lg:text-3xl">www.orbi.pk</div>
+                  <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:gap-3">
                     {slideMessages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setActiveSlide(index)}
-                        className={`h-3 rounded-full transition-all ${activeSlide === index ? "w-10 bg-[#ff6a00]" : "w-3 bg-[#d9d9d9]"}`}
+                        className={`h-2.5 rounded-full transition-all sm:h-3 ${activeSlide === index ? "w-8 bg-[#ff6a00] sm:w-10" : "w-2.5 bg-[#d9d9d9] sm:w-3"}`}
                         aria-label={`Go to slide ${index + 1}`}
                       />
                     ))}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  <div className="relative overflow-hidden rounded-[24px] border-[3px] border-[#ffbd66] bg-[radial-gradient(circle_at_top,#ffb440_0%,#ff8b0f_40%,#ff6a00_100%)] p-5 text-white shadow-[0_18px_40px_rgba(255,106,0,0.18)]">
-                    <div className="absolute right-3 top-3 grid h-16 w-16 place-items-center rounded-full border-[3px] border-white bg-[#d90429] text-center text-sm font-black leading-tight">
+                {/* Right promo cards — hidden on mobile, shown md+ */}
+                <div className="hidden flex-col gap-3 md:flex lg:gap-4">
+                  <div className="relative overflow-hidden rounded-[20px] border-[3px] border-[#ffbd66] bg-[radial-gradient(circle_at_top,#ffb440_0%,#ff8b0f_40%,#ff6a00_100%)] p-4 text-white shadow-[0_18px_40px_rgba(255,106,0,0.18)] lg:rounded-[24px] lg:p-5">
+                    <div className="absolute right-3 top-3 grid h-14 w-14 place-items-center rounded-full border-[3px] border-white bg-[#d90429] text-center text-xs font-black leading-tight lg:h-16 lg:w-16 lg:text-sm">
                       50%<br />OFF
                     </div>
-                    <div className="mt-20 inline-block rounded-full bg-[#d20022] px-4 py-2 text-sm font-black uppercase tracking-wide">
+                    <div className="mt-16 inline-block rounded-full bg-[#d20022] px-3 py-1.5 text-xs font-black uppercase tracking-wide lg:mt-20 lg:px-4 lg:py-2 lg:text-sm">
                       This Weekend Only!
                     </div>
-                    <div className="mt-5 text-6xl font-black uppercase leading-[0.85] drop-shadow-[0_4px_3px_rgba(0,0,0,0.28)]">
+                    <div className="mt-3 text-4xl font-black uppercase leading-[0.85] drop-shadow-[0_4px_3px_rgba(0,0,0,0.28)] lg:mt-5 lg:text-6xl">
                       HOT<br />SALE
                     </div>
-                    <p className="mt-3 text-sm font-medium text-white/90">New arrival</p>
-                    <button
-                      onClick={() => buyNow(featuredHeroItem)}
-                      className="mt-6 rounded-full bg-[#ffe34d] px-6 py-3 text-base font-black text-[#7a2300] shadow-lg"
-                    >
+                    <p className="mt-2 text-xs font-medium text-white/90 lg:mt-3 lg:text-sm">New arrival</p>
+                    <button onClick={() => buyNow(featuredHeroItem)} className="mt-4 rounded-full bg-[#ffe34d] px-5 py-2.5 text-sm font-black text-[#7a2300] shadow-lg lg:mt-6 lg:px-6 lg:py-3 lg:text-base">
                       Shop Now
                     </button>
                   </div>
-
-                  <div className="relative overflow-hidden rounded-[24px] bg-[#fff1e7] p-4 shadow-[0_16px_35px_rgba(0,0,0,0.08)]">
-                    <img src={heroLifestyle} alt="Fashion shopping" className="h-[160px] w-full rounded-[18px] object-cover" />
-                    <div className="absolute inset-x-4 bottom-4 rounded-[18px] bg-white/95 p-4 shadow-xl backdrop-blur">
-                      <div className="text-sm font-semibold text-[#ff6a00]">Premium picks</div>
-                      <div className="mt-1 text-lg font-bold text-[#222]">Fresh fashion arrivals for every season</div>
+                  <div className="relative overflow-hidden rounded-[20px] bg-[#fff1e7] p-3 shadow-[0_16px_35px_rgba(0,0,0,0.08)] lg:rounded-[24px] lg:p-4">
+                    <img src={heroLifestyle} alt="Fashion shopping" className="h-[120px] w-full rounded-[14px] object-cover lg:h-[160px] lg:rounded-[18px]" />
+                    <div className="absolute inset-x-3 bottom-3 rounded-[14px] bg-white/95 p-3 shadow-xl backdrop-blur lg:inset-x-4 lg:bottom-4 lg:rounded-[18px] lg:p-4">
+                      <div className="text-xs font-semibold text-[#ff6a00] lg:text-sm">Premium picks</div>
+                      <div className="mt-0.5 text-sm font-bold text-[#222] lg:mt-1 lg:text-base">Fresh fashion arrivals for every season</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-[#f1f1f1] bg-white px-6 py-4 lg:px-10">
+              {/* Slider controls */}
+              <div className="flex items-center justify-between border-t border-[#f1f1f1] bg-white px-3 py-3 sm:px-6 sm:py-4 lg:px-10">
                 <button
                   onClick={() => setActiveSlide((current) => (current - 1 + slideMessages.length) % slideMessages.length)}
-                  className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm"
+                  className="grid h-10 w-10 place-items-center rounded-xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-12 sm:w-12 sm:rounded-2xl lg:h-14 lg:w-14"
                 >
-                  <ChevronLeft className="h-7 w-7" />
+                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
                 </button>
-                <div className="flex flex-wrap items-center justify-center gap-4 text-center text-sm text-[#666] sm:text-base">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00]">
-                    <ShieldCheck className="h-4 w-4" /> Secure shopping
+                <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-[#666] sm:gap-3 sm:text-sm lg:gap-4 lg:text-base">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-[#fff4ea] px-3 py-1.5 font-semibold text-[#ff6a00] sm:gap-2 sm:px-4 sm:py-2">
+                    <ShieldCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Secure shopping
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00]">
-                    <Truck className="h-4 w-4" /> Fast delivery
+                  <div className="hidden items-center gap-1.5 rounded-full bg-[#fff4ea] px-3 py-1.5 font-semibold text-[#ff6a00] sm:inline-flex sm:gap-2 sm:px-4 sm:py-2">
+                    <Truck className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Fast delivery
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00]">
-                    <Gift className="h-4 w-4" /> Daily offers
+                  <div className="hidden items-center gap-1.5 rounded-full bg-[#fff4ea] px-3 py-1.5 font-semibold text-[#ff6a00] md:inline-flex md:gap-2 md:px-4 md:py-2">
+                    <Gift className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Daily offers
                   </div>
                 </div>
                 <button
                   onClick={() => setActiveSlide((current) => (current + 1) % slideMessages.length)}
-                  className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm"
+                  className="grid h-10 w-10 place-items-center rounded-xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-12 sm:w-12 sm:rounded-2xl lg:h-14 lg:w-14"
                 >
-                  <ChevronRight className="h-7 w-7" />
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
                 </button>
               </div>
             </div>
 
+            {/* Side mini cards — desktop only */}
             <div className="hidden xl:flex xl:flex-col xl:gap-4">
               <SideMiniCard title="Daily Deals" text="Discover discounted accessories and lifestyle products today." image={promoImage} />
               <SideMiniCard title="Fashion Essentials" text="New season picks selected for style and comfort." image={heroLifestyle} />
             </div>
           </section>
 
-          <section className="mt-7 rounded-[28px] bg-white px-4 py-7 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:px-6 lg:px-8" id="collections">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="text-3xl font-bold text-[#1e1e1e] sm:text-5xl">Shop By Categories</h2>
-              <div className="hidden items-center gap-3 md:flex">
-                <button className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm">
-                  <ChevronLeft className="h-6 w-6" />
+          <section className="mt-4 rounded-2xl bg-white px-3 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:mt-6 sm:rounded-[28px] sm:px-6 sm:py-7 lg:px-8" id="collections">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-xl font-bold text-[#1e1e1e] sm:text-3xl lg:text-5xl">Shop By Categories</h2>
+              <div className="hidden items-center gap-2 sm:flex sm:gap-3">
+                <button className="grid h-10 w-10 place-items-center rounded-xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-12 sm:w-12 sm:rounded-2xl lg:h-14 lg:w-14">
+                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
-                <button className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm">
-                  <ChevronRight className="h-6 w-6" />
+                <button className="grid h-10 w-10 place-items-center rounded-xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-12 sm:w-12 sm:rounded-2xl lg:h-14 lg:w-14">
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
               </div>
             </div>
-            <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-10">
+            <div className="mt-5 grid grid-cols-3 gap-3 sm:mt-8 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 lg:mt-10 lg:gap-6 xl:grid-cols-10">
               {categories.map((item) => (
                 <div key={item.label} className="text-center">
-                  <div className="mx-auto grid h-24 w-24 place-items-center rounded-full text-white shadow-[0_15px_30px_rgba(0,0,0,0.08)]" style={{ backgroundColor: item.color }}>
-                    <item.icon className="h-11 w-11" />
+                  <div className="mx-auto grid h-14 w-14 place-items-center rounded-full text-white shadow-[0_15px_30px_rgba(0,0,0,0.08)] lg:h-24 lg:w-24" style={{ backgroundColor: item.color }}>
+                    <item.icon className="h-6 w-6 lg:h-11 lg:w-11" />
                   </div>
-                  <div className="mx-auto mt-5 max-w-[160px] text-xl font-medium leading-8 text-[#222]">{item.label}</div>
+                  <div className="mx-auto mt-2 max-w-[80px] text-[10px] font-medium leading-4 text-[#222] sm:mt-3 sm:max-w-[110px] sm:text-xs sm:leading-5 lg:mt-5 lg:max-w-[160px] lg:text-base lg:leading-7">{item.label}</div>
                 </div>
               ))}
             </div>
           </section>
 
-          <section className="mt-7 overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.06)]" id="premium-products">
-            <div className="grid items-center gap-4 bg-[linear-gradient(90deg,#ffffff_0%,#fff4ec_35%,#fff6ef_70%,#ff7a12_100%)] p-5 lg:grid-cols-[320px_1fr_280px] lg:p-8">
-              <div className="relative h-full overflow-hidden rounded-[24px]">
+          <section className="mt-4 overflow-hidden rounded-2xl bg-white shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:mt-6 sm:rounded-[28px]" id="premium-products">
+            <div className="flex flex-col gap-4 bg-[linear-gradient(135deg,#ffffff_0%,#fff4ec_50%,#ff7a12_100%)] p-4 sm:p-6 lg:grid lg:grid-cols-[280px_1fr_220px] lg:items-center lg:gap-6 lg:p-8">
+              <div className="relative h-36 overflow-hidden rounded-[16px] sm:h-48 lg:h-full lg:rounded-[24px]">
                 <img src={promoImage} alt="Shopping promotion" className="h-full w-full object-cover" />
-                <div className="absolute right-4 top-4 grid h-24 w-24 place-items-center rounded-full border-[4px] border-white bg-[#ff7a12] text-center text-2xl font-black leading-none text-white shadow-xl">
+                <div className="absolute right-3 top-3 grid h-14 w-14 place-items-center rounded-full border-[3px] border-white bg-[#ff7a12] text-center text-sm font-black leading-none text-white shadow-xl sm:h-20 sm:w-20 sm:text-xl lg:h-24 lg:w-24 lg:border-[4px] lg:text-2xl">
                   45%<br />OFF
                 </div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-4xl font-black uppercase tracking-wide text-[#ff6a00] sm:text-6xl">EXCLUSIVE OFFERS</div>
-                <p className="mt-3 text-2xl font-semibold text-[#141414] sm:text-5xl">Limited Time Exclusive Deals – Don’t Miss Out!</p>
+                <div className="text-xl font-black uppercase tracking-wide text-[#ff6a00] sm:text-3xl lg:text-6xl">EXCLUSIVE OFFERS</div>
+                <p className="mt-2 text-sm font-semibold text-[#141414] sm:mt-3 sm:text-lg lg:text-4xl">Limited Time Exclusive Deals – Don’t Miss Out!</p>
               </div>
               <div className="flex justify-center lg:justify-end">
                 <button
                   onClick={() => buyNow(featuredHeroItem)}
-                  className="rounded-full bg-[#ff7a12] px-8 py-4 text-2xl font-black uppercase text-white shadow-[0_16px_32px_rgba(255,122,18,0.25)]"
+                  className="rounded-full bg-[#ff7a12] px-5 py-2.5 text-sm font-black uppercase text-white shadow-[0_16px_32px_rgba(255,122,18,0.25)] sm:px-7 sm:py-3.5 sm:text-lg lg:px-8 lg:py-4 lg:text-2xl"
                 >
                   SHOP NOW
                 </button>
@@ -774,38 +772,38 @@ export default function App() {
             </div>
           </section>
 
-          <section className="mt-9 rounded-[28px] bg-white px-4 py-7 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:px-6 lg:px-8" id="leftovers">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <section className="mt-4 rounded-2xl bg-white px-3 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:mt-6 sm:rounded-[28px] sm:px-6 sm:py-7 lg:px-8" id="leftovers">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h2 className="text-3xl font-bold text-[#1e1e1e] sm:text-5xl">Flash Sale</h2>
-                <div className="mt-4 flex items-center gap-4 text-[#ff6a00]">
+                <h2 className="text-2xl font-bold text-[#1e1e1e] sm:text-4xl lg:text-5xl">Flash Sale</h2>
+                <div className="mt-3 flex items-center gap-3 text-[#ff6a00]">
                   <span className="h-[2px] w-20 bg-[#ff8f41]" />
                   <Flame className="h-8 w-8" />
                   <span className="h-[2px] w-20 bg-[#ff8f41]" />
                 </div>
-                <p className="mt-5 text-xl text-[#4a5565]">Don't miss this opportunity at a special discount just for this week.</p>
+                <p className="mt-2 text-sm text-[#4a5565] sm:mt-4 sm:text-base lg:text-xl">Don't miss this opportunity at a special discount just for this week.</p>
               </div>
-              <button onClick={() => goToSection("premium-products")} className="text-2xl font-medium text-[#ff6a00] underline underline-offset-4">
+              <button onClick={() => goToSection("premium-products")} className="self-start text-sm font-medium text-[#ff6a00] underline underline-offset-4 sm:self-auto sm:text-lg lg:text-2xl">
                 View More
               </button>
             </div>
 
             {loading ? (
-              <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-6">
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-5 md:grid-cols-3 xl:grid-cols-6">
                 {Array.from({ length: 6 }).map((_, index) => (
-                  <div key={index} className="rounded-[22px] border border-[#f0f0f0] bg-white p-4 shadow-sm">
-                    <div className="h-60 animate-pulse rounded-[18px] bg-[#f4f4f4]" />
-                    <div className="mt-4 h-5 animate-pulse rounded bg-[#f4f4f4]" />
-                    <div className="mt-3 h-5 w-2/3 animate-pulse rounded bg-[#f4f4f4]" />
+                  <div key={index} className="rounded-[18px] border border-[#f0f0f0] bg-white p-3 shadow-sm sm:rounded-[22px] sm:p-4">
+                    <div className="aspect-square animate-pulse rounded-[14px] bg-[#f4f4f4] sm:rounded-[18px]" />
+                    <div className="mt-3 h-4 animate-pulse rounded bg-[#f4f4f4]" />
+                    <div className="mt-2 h-4 w-2/3 animate-pulse rounded bg-[#f4f4f4]" />
                   </div>
                 ))}
               </div>
             ) : fetchError ? (
-              <div className="mt-8 rounded-2xl bg-[#fff4ea] px-5 py-4 text-lg font-medium text-[#b44900]">{fetchError}</div>
+              <div className="mt-5 rounded-2xl bg-[#fff4ea] px-4 py-3 text-sm font-medium text-[#b44900] sm:mt-8 sm:px-5 sm:py-4 sm:text-base">{fetchError}</div>
             ) : flashSaleProducts.length === 0 ? (
-              <div className="mt-8 rounded-2xl bg-[#fff4ea] px-5 py-4 text-lg font-medium text-[#b44900]">No products matched your search.</div>
+              <div className="mt-5 rounded-2xl bg-[#fff4ea] px-4 py-3 text-sm font-medium text-[#b44900] sm:mt-8 sm:px-5 sm:py-4 sm:text-base">No products matched your search.</div>
             ) : (
-              <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-6">
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-5 md:grid-cols-3 xl:grid-cols-6">
                 {flashSaleProducts.map((product, index) => (
                   <ProductCard
                     key={product.id}
@@ -824,7 +822,7 @@ export default function App() {
             onBuyNow={(product) => buyNow(realToStoreItem(product))}
           />
 
-          <section className="mt-9 grid gap-6 lg:grid-cols-2 xl:grid-cols-4" id="trending-products">
+          <section className="mt-4 grid gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2 xl:grid-cols-4" id="trending-products">
             <MiniProductColumn title="Top Selling" products={topSelling} onAddToCart={addToCart} onBuyNow={buyNow} />
             <MiniProductColumn title="Trending Products" products={trendingProducts} onAddToCart={addToCart} onBuyNow={buyNow} />
             <MiniProductColumn title="Recently Added" products={recentlyAdded} onAddToCart={addToCart} onBuyNow={buyNow} />
@@ -1050,7 +1048,7 @@ function ProductCard({
   return (
     <article className="group overflow-hidden rounded-[24px] border border-[#f0f0f0] bg-white shadow-[0_16px_38px_rgba(0,0,0,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(0,0,0,0.08)]">
       <div className="relative">
-        <div className="absolute left-3 top-3 z-10 inline-flex items-center rounded-r-xl bg-[#ff6976] px-5 py-3 text-xl font-black uppercase text-white">
+        <div className="absolute left-3 top-3 z-10 inline-flex items-center rounded-r-xl bg-[#ff6976] px-3 py-2 text-sm font-black uppercase text-white sm:px-5 sm:py-3 sm:text-xl">
           Sale {index + 1}
         </div>
         <div className="aspect-[4/4.2] overflow-hidden bg-[#fff8f3]">
@@ -1058,20 +1056,20 @@ function ProductCard({
         </div>
       </div>
       <div className="p-4">
-        <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#ff6a00]">{product.category}</div>
-        <h3 className="line-clamp-2 min-h-[64px] text-[20px] font-medium leading-8 text-[#222]">{product.title}</h3>
+        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#ff6a00] sm:text-xs">{product.category}</div>
+        <h3 className="line-clamp-2 min-h-[44px] text-sm font-medium leading-6 text-[#222] sm:min-h-[64px] sm:text-[18px] sm:leading-7">{product.title}</h3>
         <div className="mt-3 flex items-end gap-3">
-          <span className="text-[22px] font-black text-[#ff6a00]">{formatRupees(product.price)}</span>
-          <span className="text-xl text-[#6b7280] line-through">{oldRupees(product.price, product.oldPrice)}</span>
+          <span className="text-base font-black text-[#ff6a00] sm:text-[20px]">{formatRupees(product.price)}</span>
+          <span className="text-sm text-[#6b7280] line-through sm:text-base">{oldRupees(product.price, product.oldPrice)}</span>
         </div>
         <div className="mt-3 flex items-center gap-1 text-[#ffb400]">
           <Stars rating={product.rating} />
         </div>
         <div className="mt-4 grid gap-3">
-          <button onClick={onBuyNow} className="w-full rounded-xl bg-[#ff6a00] px-5 py-3 text-sm font-black uppercase text-white shadow-[0_12px_24px_rgba(255,106,0,0.18)]">
+          <button onClick={onBuyNow} className="w-full rounded-xl bg-[#ff6a00] px-3 py-2.5 text-xs font-black uppercase text-white shadow-[0_12px_24px_rgba(255,106,0,0.18)] sm:px-5 sm:py-3 sm:text-sm">
             Shop Now
           </button>
-          <button onClick={onAddToCart} className="w-full rounded-xl border border-[#ff6a00] px-5 py-3 text-sm font-black uppercase text-[#ff6a00]">
+          <button onClick={onAddToCart} className="w-full rounded-xl border border-[#ff6a00] px-3 py-2.5 text-xs font-black uppercase text-[#ff6a00] sm:px-5 sm:py-3 sm:text-sm">
             Add to Cart
           </button>
         </div>
@@ -1094,7 +1092,7 @@ function MiniProductColumn({
   return (
     <div className="rounded-[28px] bg-white px-5 py-6 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:px-6">
       <div>
-        <h3 className="text-3xl font-bold text-[#1e1e1e]">{title}</h3>
+        <h3 className="text-xl font-bold text-[#1e1e1e] sm:text-2xl lg:text-3xl">{title}</h3>
         <div className="mt-5 h-[2px] w-full bg-[#f0f0f0]">
           <div className="h-full w-40 bg-[#ff7a12]" />
         </div>
