@@ -1270,93 +1270,117 @@ function CheckoutPage({
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }) {
   return (
-    <main className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 lg:px-8">
-      <div className="rounded-[28px] bg-white p-6 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:p-8 lg:p-10">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <main className="mx-auto max-w-[1800px] px-3 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+      <div className="rounded-2xl bg-white p-4 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:rounded-[28px] sm:p-6 lg:p-10">
+
+        {/* Page Header */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 text-sm font-black uppercase tracking-[0.22em] text-[#ff6a00]">
-              <ShieldCheck className="h-4 w-4" /> Checkout Page
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-3 py-1.5 text-xs font-black uppercase tracking-[0.22em] text-[#ff6a00] sm:px-4 sm:py-2 sm:text-sm">
+              <ShieldCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Checkout
             </div>
-            <h1 className="mt-4 text-4xl font-black text-[#1d1d1d] sm:text-5xl">Secure Checkout</h1>
-            <p className="mt-3 text-lg text-[#667085]">Complete your order and submit it successfully.</p>
+            <h1 className="mt-3 text-2xl font-black text-[#1d1d1d] sm:text-4xl lg:text-5xl">Secure Checkout</h1>
+            <p className="mt-1.5 text-sm text-[#667085] sm:mt-2 sm:text-base lg:text-lg">Complete your order and submit it successfully.</p>
           </div>
-          <button onClick={onBackToCart} className="rounded-xl border border-[#ff6a00] px-5 py-3 text-sm font-black uppercase text-[#ff6a00]">
-            Back to Cart
+          <button
+            onClick={onBackToCart}
+            className="self-start rounded-xl border border-[#ff6a00] px-4 py-2.5 text-xs font-black uppercase text-[#ff6a00] sm:self-auto sm:px-5 sm:py-3 sm:text-sm"
+          >
+            ← Back to Cart
           </button>
         </div>
 
         {cartItems.length === 0 ? (
-          <div className="mt-10 rounded-[24px] bg-[#fff8f2] p-10 text-center text-lg text-[#6b7280]">Your cart is empty. Please add products before checkout.</div>
+          <div className="mt-8 rounded-[20px] bg-[#fff8f2] p-8 text-center text-base text-[#6b7280] sm:p-10 sm:text-lg">
+            Your cart is empty. Please add products before checkout.
+          </div>
         ) : (
-          <div className="mt-10 grid gap-8 xl:grid-cols-[1fr_0.8fr]">
-            <form onSubmit={onSubmit} className="space-y-6 rounded-[24px] border border-[#f0f0f0] p-6 shadow-sm">
-              <div className="grid gap-6 md:grid-cols-2">
-                <Field label="Full Name">
-                  <input
-                    required
-                    value={form.fullName}
-                    onChange={(event) => onChange({ ...form, fullName: event.target.value })}
-                    className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
-                    placeholder="Enter your full name"
-                  />
-                </Field>
-                <Field label="Email Address">
-                  <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(event) => onChange({ ...form, email: event.target.value })}
-                    className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
-                    placeholder="Enter your email"
-                  />
-                </Field>
+          /* Main grid — stacks on mobile, side-by-side from lg */
+          <div className="mt-6 flex flex-col gap-6 lg:mt-10 lg:grid lg:grid-cols-[1fr_380px] lg:gap-8 xl:grid-cols-[1fr_420px]">
+
+            {/* ── LEFT: Form ── */}
+            <form onSubmit={onSubmit} className="space-y-5 sm:space-y-6">
+
+              {/* Shipping Details Card */}
+              <div className="rounded-2xl border border-[#f0f0f0] p-4 shadow-sm sm:rounded-[24px] sm:p-6">
+                <h2 className="mb-4 text-base font-black uppercase tracking-wide text-[#1f1f1f] sm:text-lg">
+                  Shipping Details
+                </h2>
+
+                {/* Full Name + Email */}
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Field label="Full Name">
+                    <input
+                      required
+                      value={form.fullName}
+                      onChange={(event) => onChange({ ...form, fullName: event.target.value })}
+                      className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
+                      placeholder="Enter your full name"
+                    />
+                  </Field>
+                  <Field label="Email Address">
+                    <input
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={(event) => onChange({ ...form, email: event.target.value })}
+                      className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
+                      placeholder="Enter your email"
+                    />
+                  </Field>
+                </div>
+
+                {/* Phone + City */}
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <Field label="Phone Number">
+                    <input
+                      required
+                      value={form.phone}
+                      onChange={(event) => onChange({ ...form, phone: event.target.value })}
+                      className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
+                      placeholder="Enter your phone number"
+                    />
+                  </Field>
+                  <Field label="City">
+                    <input
+                      required
+                      value={form.city}
+                      onChange={(event) => onChange({ ...form, city: event.target.value })}
+                      className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
+                      placeholder="Enter your city"
+                    />
+                  </Field>
+                </div>
+
+                {/* Address */}
+                <div className="mt-4">
+                  <Field label="Shipping Address">
+                    <textarea
+                      required
+                      value={form.address}
+                      onChange={(event) => onChange({ ...form, address: event.target.value })}
+                      className="min-h-[110px] w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 py-3 text-base outline-none focus:border-[#ff6a00] sm:min-h-[130px] sm:rounded-2xl sm:px-5 sm:py-4 sm:text-lg"
+                      placeholder="Enter your complete address"
+                    />
+                  </Field>
+                </div>
               </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
-                <Field label="Phone Number">
-                  <input
-                    required
-                    value={form.phone}
-                    onChange={(event) => onChange({ ...form, phone: event.target.value })}
-                    className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
-                    placeholder="Enter your phone number"
-                  />
-                </Field>
-                <Field label="City">
-                  <input
-                    required
-                    value={form.city}
-                    onChange={(event) => onChange({ ...form, city: event.target.value })}
-                    className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
-                    placeholder="Enter your city"
-                  />
-                </Field>
-              </div>
-
-              <Field label="Shipping Address">
-                <textarea
-                  required
-                  value={form.address}
-                  onChange={(event) => onChange({ ...form, address: event.target.value })}
-                  className="min-h-[150px] w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 py-4 text-lg outline-none focus:border-[#ff6a00]"
-                  placeholder="Enter your complete address"
-                />
-              </Field>
-
-              {/* Card Payment Section */}
-              <div className="rounded-[20px] border border-[#ffe0c8] bg-[#fff8f2] p-5">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="grid h-10 w-10 place-items-center rounded-full bg-[#ff6a00] text-white">
-                    <ShieldCheck className="h-5 w-5" />
+              {/* Card Payment Card */}
+              <div className="rounded-2xl border border-[#ffe0c8] bg-[#fff8f2] p-4 sm:rounded-[24px] sm:p-6">
+                {/* Card header */}
+                <div className="mb-4 flex flex-wrap items-center gap-3">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#ff6a00] text-white sm:h-10 sm:w-10">
+                    <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
-                  <div>
-                    <div className="text-base font-black text-[#1f1f1f]">Card Payment</div>
-                    <div className="text-sm text-[#667085]">Visa · Mastercard · American Express</div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-black text-[#1f1f1f] sm:text-base">Card Payment</div>
+                    <div className="text-xs text-[#667085] sm:text-sm">Visa · Mastercard · American Express</div>
                   </div>
-                  <div className="ml-auto flex items-center gap-2">
-                    <span className="rounded-md bg-[#1a1f71] px-2 py-1 text-xs font-black text-white">VISA</span>
-                    <span className="rounded-md bg-[#eb001b] px-2 py-1 text-xs font-black text-white">MC</span>
-                    <span className="rounded-md bg-[#2e77bc] px-2 py-1 text-xs font-black text-white">AMEX</span>
+                  <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+                    <span className="rounded bg-[#1a1f71] px-1.5 py-0.5 text-[10px] font-black text-white sm:rounded-md sm:px-2 sm:py-1 sm:text-xs">VISA</span>
+                    <span className="rounded bg-[#eb001b] px-1.5 py-0.5 text-[10px] font-black text-white sm:rounded-md sm:px-2 sm:py-1 sm:text-xs">MC</span>
+                    <span className="rounded bg-[#2e77bc] px-1.5 py-0.5 text-[10px] font-black text-white sm:rounded-md sm:px-2 sm:py-1 sm:text-xs">AMEX</span>
                   </div>
                 </div>
 
@@ -1373,12 +1397,12 @@ function CheckoutPage({
                         const formatted = raw.replace(/(.{4})/g, "$1 ").trim();
                         onChange({ ...form, cardNumber: formatted });
                       }}
-                      className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg tracking-widest outline-none focus:border-[#ff6a00]"
+                      className="h-12 w-full rounded-xl border border-[#ececec] bg-white px-4 text-base tracking-widest outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
                       placeholder="1234 5678 9012 3456"
                     />
                   </Field>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid grid-cols-2 gap-4">
                     <Field label="Expiry Date">
                       <input
                         required
@@ -1391,7 +1415,7 @@ function CheckoutPage({
                           const formatted = raw.length > 2 ? `${raw.slice(0, 2)}/${raw.slice(2)}` : raw;
                           onChange({ ...form, cardExpiry: formatted });
                         }}
-                        className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+                        className="h-12 w-full rounded-xl border border-[#ececec] bg-white px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
                         placeholder="MM/YY"
                       />
                     </Field>
@@ -1406,49 +1430,81 @@ function CheckoutPage({
                           const raw = event.target.value.replace(/\D/g, "").slice(0, 4);
                           onChange({ ...form, cardCvc: raw });
                         }}
-                        className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+                        className="h-12 w-full rounded-xl border border-[#ececec] bg-white px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
                         placeholder="123"
                       />
                     </Field>
                   </div>
                 </div>
 
-                <p className="mt-3 flex items-center gap-2 text-sm text-[#667085]">
-                  <ShieldCheck className="h-4 w-4 text-[#22c55e]" />
+                <p className="mt-3 flex items-center gap-2 text-xs text-[#667085] sm:text-sm">
+                  <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-[#22c55e] sm:h-4 sm:w-4" />
                   Your card details are encrypted and secure.
                 </p>
               </div>
 
-              <button type="submit" className="w-full rounded-xl bg-[#ff6a00] px-6 py-4 text-lg font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)]">
+              {/* Submit — visible on mobile here, hidden on lg (shown in summary panel) */}
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-[#ff6a00] px-6 py-4 text-base font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)] sm:text-lg lg:hidden"
+              >
                 Place Order Successfully
               </button>
             </form>
 
-            <div className="rounded-[24px] border border-[#f0f0f0] bg-[#fffdfb] p-6 shadow-sm">
-              <h2 className="text-3xl font-black text-[#1f1f1f]">Checkout Summary</h2>
-              <div className="mt-6 space-y-5">
+            {/* ── RIGHT: Order Summary ── */}
+            <div className="rounded-2xl border border-[#f0f0f0] bg-[#fffdfb] p-4 shadow-sm sm:rounded-[24px] sm:p-6 lg:self-start lg:sticky lg:top-24">
+              <h2 className="text-xl font-black text-[#1f1f1f] sm:text-2xl lg:text-3xl">Order Summary</h2>
+
+              {/* Cart items list */}
+              <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-5">
                 {cartItems.map((item) => (
-                  <div key={item.id} className="flex items-center gap-4 border-b border-dashed border-[#ececec] pb-4">
-                    <div className="h-20 w-20 overflow-hidden rounded-[16px] bg-[#fff7ef]">
+                  <div key={item.id} className="flex items-center gap-3 border-b border-dashed border-[#ececec] pb-3 sm:gap-4 sm:pb-4">
+                    <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-[#fff7ef] sm:h-20 sm:w-20 sm:rounded-[16px]">
                       <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="line-clamp-1 text-lg font-bold text-[#1f1f1f]">{item.title}</div>
-                      <div className="text-sm text-[#667085]">Qty: {item.quantity}</div>
+                      <div className="line-clamp-1 text-sm font-bold text-[#1f1f1f] sm:text-base lg:text-lg">{item.title}</div>
+                      <div className="text-xs text-[#667085] sm:text-sm">Qty: {item.quantity}</div>
                     </div>
-                    <div className="text-lg font-black text-[#ff6a00]">{formatRupees(item.price * item.quantity)}</div>
+                    <div className="shrink-0 text-sm font-black text-[#ff6a00] sm:text-base lg:text-lg">{formatRupees(item.price * item.quantity)}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 space-y-4 text-lg text-[#4b5563]">
-                <div className="flex items-center justify-between"><span>Subtotal</span><span className="font-bold text-[#1f1f1f]">{formatRupees(subtotal)}</span></div>
-                <div className="flex items-center justify-between"><span>Shipping</span><span className="font-bold text-[#1f1f1f]">{formatRupees(shippingFee)}</span></div>
-                <div className="border-t border-dashed border-[#e6e6e6] pt-4">
-                  <div className="flex items-center justify-between text-2xl font-black text-[#1f1f1f]"><span>Total</span><span className="text-[#ff6a00]">{formatRupees(total)}</span></div>
+              {/* Totals */}
+              <div className="mt-4 space-y-3 text-sm text-[#4b5563] sm:mt-6 sm:space-y-4 sm:text-base lg:text-lg">
+                <div className="flex items-center justify-between">
+                  <span>Subtotal</span>
+                  <span className="font-bold text-[#1f1f1f]">{formatRupees(subtotal)}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Shipping</span>
+                  <span className="font-bold text-[#1f1f1f]">{formatRupees(shippingFee)}</span>
+                </div>
+                <div className="border-t border-dashed border-[#e6e6e6] pt-3 sm:pt-4">
+                  <div className="flex items-center justify-between text-lg font-black text-[#1f1f1f] sm:text-xl lg:text-2xl">
+                    <span>Total</span>
+                    <span className="text-[#ff6a00]">{formatRupees(total)}</span>
+                  </div>
                 </div>
               </div>
+
+              {/* Submit — only visible on lg+ inside summary panel */}
+              <button
+                form="checkout-form"
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const formEl = document.querySelector<HTMLFormElement>("form");
+                  if (formEl) formEl.requestSubmit();
+                }}
+                className="mt-6 hidden w-full rounded-xl bg-[#ff6a00] px-6 py-4 text-base font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)] lg:block lg:text-lg"
+              >
+                Place Order Successfully
+              </button>
             </div>
+
           </div>
         )}
       </div>
