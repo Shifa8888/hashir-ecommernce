@@ -831,17 +831,15 @@ export default function App() {
             <MiniProductColumn title="Top Rated" products={topRated} onAddToCart={addToCart} onBuyNow={buyNow} />
           </section>
 
-          <section className="mt-9 rounded-[28px] bg-white px-6 py-8 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:px-8 lg:px-10" id="become-a-seller">
-            <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-[#ff6a00]">
-                  <Store className="h-4 w-4" /> Become a Seller
-                </div>
-                <h2 className="mt-4 text-3xl font-black text-[#1d1d1d] sm:text-5xl">Join ORBI as a Shopkeeper</h2>
-                <p className="mt-3 max-w-2xl text-lg text-[#667085]">
-                  Register your shop, set up your storefront, and start selling to customers worldwide. Card payment only — fast, secure, and international.
-                </p>
+          <section className="mt-9 rounded-[20px] bg-white px-4 py-6 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:rounded-[28px] sm:px-6 sm:py-8 lg:px-10" id="become-a-seller">
+            <div className="mb-6 sm:mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a00] sm:px-4 sm:py-2 sm:text-sm">
+                <Store className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Become a Seller
               </div>
+              <h2 className="mt-3 text-2xl font-black text-[#1d1d1d] sm:mt-4 sm:text-3xl lg:text-5xl">Join ORBI as a Shopkeeper</h2>
+              <p className="mt-2 max-w-2xl text-sm text-[#667085] sm:mt-3 sm:text-base lg:text-lg">
+                Register your shop, set up your storefront, and start selling to customers worldwide. Card payment only — fast, secure, and international.
+              </p>
             </div>
 
             <SellerJoinForm />
@@ -1612,12 +1610,12 @@ function SellerJoinForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-[24px] bg-[#e9fff0] p-10 text-center">
-        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-[#22c55e] text-white">
-          <CheckCircle2 className="h-10 w-10" />
+      <div className="rounded-[20px] bg-[#e9fff0] p-6 text-center sm:rounded-[24px] sm:p-10">
+        <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#22c55e] text-white sm:h-20 sm:w-20">
+          <CheckCircle2 className="h-8 w-8 sm:h-10 sm:w-10" />
         </div>
-        <h3 className="mt-5 text-3xl font-black text-[#1d1d1d]">Application Submitted!</h3>
-        <p className="mt-3 text-lg text-[#4b5563]">
+        <h3 className="mt-4 text-2xl font-black text-[#1d1d1d] sm:mt-5 sm:text-3xl">Application Submitted!</h3>
+        <p className="mt-2 text-sm text-[#4b5563] sm:mt-3 sm:text-lg">
           Your shopkeeper application has been received. We'll review it and get back to you within 24–48 hours.
         </p>
       </div>
@@ -1625,17 +1623,18 @@ function SellerJoinForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-8 lg:grid-cols-2">
-      {/* Shop Details */}
-      <div className="space-y-5 rounded-[24px] border border-[#f0f0f0] p-6 shadow-sm">
-        <h3 className="text-xl font-black text-[#1f1f1f]">Shop Information</h3>
+    <form onSubmit={handleSubmit} className="grid gap-5 sm:gap-6 lg:grid-cols-2">
+
+      {/* ── Shop Information ── */}
+      <div className="space-y-4 rounded-[20px] border border-[#f0f0f0] p-4 shadow-sm sm:space-y-5 sm:rounded-[24px] sm:p-6">
+        <h3 className="text-base font-black text-[#1f1f1f] sm:text-xl">Shop Information</h3>
 
         <Field label="Shop / Business Name">
           <input
             required
             value={form.shopName}
             onChange={(e) => setForm({ ...form, shopName: e.target.value })}
-            className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+            className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
             placeholder="e.g. My Awesome Store"
           />
         </Field>
@@ -1645,19 +1644,19 @@ function SellerJoinForm() {
             required
             value={form.ownerName}
             onChange={(e) => setForm({ ...form, ownerName: e.target.value })}
-            className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+            className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
             placeholder="Enter your full name"
           />
         </Field>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-2">
           <Field label="Email Address">
             <input
               required
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+              className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
               placeholder="you@example.com"
             />
           </Field>
@@ -1666,7 +1665,7 @@ function SellerJoinForm() {
               required
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+              className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
               placeholder="+1 234 567 8900"
             />
           </Field>
@@ -1677,26 +1676,28 @@ function SellerJoinForm() {
             required
             value={form.country}
             onChange={(e) => setForm({ ...form, country: e.target.value })}
-            className="h-14 w-full rounded-2xl border border-[#ececec] bg-[#fffaf6] px-5 text-lg outline-none focus:border-[#ff6a00]"
+            className="h-12 w-full rounded-xl border border-[#ececec] bg-[#fffaf6] px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
             placeholder="e.g. United States"
           />
         </Field>
       </div>
 
-      {/* Card Payment */}
-      <div className="space-y-5 rounded-[24px] border border-[#ffe0c8] bg-[#fff8f2] p-6 shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-full bg-[#ff6a00] text-white">
-            <ShieldCheck className="h-5 w-5" />
+      {/* ── Card Payment ── */}
+      <div className="space-y-4 rounded-[20px] border border-[#ffe0c8] bg-[#fff8f2] p-4 shadow-sm sm:space-y-5 sm:rounded-[24px] sm:p-6">
+
+        {/* Card header row */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#ff6a00] text-white sm:h-10 sm:w-10">
+            <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
-          <div>
-            <h3 className="text-xl font-black text-[#1f1f1f]">Card Payment</h3>
-            <p className="text-sm text-[#667085]">International card transactions only</p>
+          <div className="min-w-0">
+            <h3 className="text-base font-black text-[#1f1f1f] sm:text-xl">Card Payment</h3>
+            <p className="text-xs text-[#667085] sm:text-sm">International card transactions only</p>
           </div>
-          <div className="ml-auto flex items-center gap-2">
-            <span className="rounded-md bg-[#1a1f71] px-2 py-1 text-xs font-black text-white">VISA</span>
-            <span className="rounded-md bg-[#eb001b] px-2 py-1 text-xs font-black text-white">MC</span>
-            <span className="rounded-md bg-[#2e77bc] px-2 py-1 text-xs font-black text-white">AMEX</span>
+          <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-2">
+            <span className="rounded bg-[#1a1f71] px-1.5 py-0.5 text-[10px] font-black text-white sm:rounded-md sm:px-2 sm:py-1 sm:text-xs">VISA</span>
+            <span className="rounded bg-[#eb001b] px-1.5 py-0.5 text-[10px] font-black text-white sm:rounded-md sm:px-2 sm:py-1 sm:text-xs">MC</span>
+            <span className="rounded bg-[#2e77bc] px-1.5 py-0.5 text-[10px] font-black text-white sm:rounded-md sm:px-2 sm:py-1 sm:text-xs">AMEX</span>
           </div>
         </div>
 
@@ -1712,12 +1713,12 @@ function SellerJoinForm() {
               const formatted = raw.replace(/(.{4})/g, "$1 ").trim();
               setForm({ ...form, cardNumber: formatted });
             }}
-            className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg tracking-widest outline-none focus:border-[#ff6a00]"
+            className="h-12 w-full rounded-xl border border-[#ececec] bg-white px-4 text-base tracking-widest outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
             placeholder="1234 5678 9012 3456"
           />
         </Field>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4">
           <Field label="Expiry Date">
             <input
               required
@@ -1730,7 +1731,7 @@ function SellerJoinForm() {
                 const formatted = raw.length > 2 ? `${raw.slice(0, 2)}/${raw.slice(2)}` : raw;
                 setForm({ ...form, cardExpiry: formatted });
               }}
-              className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+              className="h-12 w-full rounded-xl border border-[#ececec] bg-white px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
               placeholder="MM/YY"
             />
           </Field>
@@ -1745,20 +1746,20 @@ function SellerJoinForm() {
                 const raw = e.target.value.replace(/\D/g, "").slice(0, 4);
                 setForm({ ...form, cardCvc: raw });
               }}
-              className="h-14 w-full rounded-2xl border border-[#ececec] bg-white px-5 text-lg outline-none focus:border-[#ff6a00]"
+              className="h-12 w-full rounded-xl border border-[#ececec] bg-white px-4 text-base outline-none focus:border-[#ff6a00] sm:h-14 sm:rounded-2xl sm:px-5 sm:text-lg"
               placeholder="123"
             />
           </Field>
         </div>
 
-        <p className="flex items-center gap-2 text-sm text-[#667085]">
-          <ShieldCheck className="h-4 w-4 text-[#22c55e]" />
+        <p className="flex items-center gap-2 text-xs text-[#667085] sm:text-sm">
+          <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-[#22c55e] sm:h-4 sm:w-4" />
           Your card details are encrypted and secure. No local payment methods accepted.
         </p>
 
         <button
           type="submit"
-          className="mt-2 w-full rounded-xl bg-[#ff6a00] px-6 py-4 text-lg font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)]"
+          className="w-full rounded-xl bg-[#ff6a00] px-5 py-3.5 text-sm font-black uppercase text-white shadow-[0_16px_30px_rgba(255,106,0,0.18)] sm:px-6 sm:py-4 sm:text-lg"
         >
           Submit Shopkeeper Application
         </button>
