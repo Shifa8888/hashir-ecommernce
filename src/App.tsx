@@ -476,7 +476,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fffaf5] text-[#1f1f1f]">
+    <div className="min-h-screen overflow-x-hidden bg-[#fffaf5] text-[#1f1f1f]">
       <div className="bg-[#222529] text-white">
         <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 px-4 py-3 text-sm sm:px-6 lg:px-8">
           <p className="hidden font-medium md:block">Your must-have item is calling – Buy Now!</p>
@@ -497,23 +497,23 @@ export default function App() {
       </div>
 
       <header className="sticky top-0 z-40 bg-[#ff6a00] shadow-[0_10px_30px_rgba(255,106,0,0.14)]">
-        <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-4 py-6 lg:flex-nowrap lg:gap-8">
-            <div className="flex w-full items-center justify-between lg:w-auto lg:min-w-[300px]">
-              <button onClick={openHome} className="flex items-center gap-3 text-left text-white">
-                <div className="grid h-16 w-16 place-items-center rounded-full border-[6px] border-white/95 text-2xl font-black">O</div>
+        <div className="mx-auto max-w-[1800px] px-3 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-3 py-3 sm:gap-4 sm:py-5 lg:flex-nowrap lg:gap-8 lg:py-6">
+            <div className="flex w-full items-center justify-between lg:w-auto lg:min-w-[260px]">
+              <button onClick={openHome} className="flex items-center gap-2 text-left text-white sm:gap-3">
+                <div className="grid h-11 w-11 place-items-center rounded-full border-[4px] border-white/95 text-xl font-black sm:h-14 sm:w-14 sm:border-[5px] sm:text-2xl">O</div>
                 <div>
-                  <div className="text-4xl font-black tracking-[0.28em]">ORBI</div>
-                  <div className="-mt-1 text-sm font-semibold tracking-[0.45em] text-white/90">STORE</div>
+                  <div className="text-2xl font-black tracking-[0.28em] sm:text-3xl lg:text-4xl">ORBI</div>
+                  <div className="-mt-0.5 text-[10px] font-semibold tracking-[0.45em] text-white/90 sm:text-sm">STORE</div>
                 </div>
               </button>
 
               <button
-                className="grid h-12 w-12 place-items-center rounded-xl border border-white/20 text-white lg:hidden"
+                className="grid h-10 w-10 place-items-center rounded-xl border border-white/20 text-white sm:h-12 sm:w-12 lg:hidden"
                 onClick={() => setMobileMenuOpen((value) => !value)}
                 aria-label="Toggle menu"
               >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {mobileMenuOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
               </button>
             </div>
 
@@ -523,13 +523,13 @@ export default function App() {
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search in Orbi"
-                  className="h-16 w-full px-6 text-lg text-slate-700 outline-none placeholder:text-slate-400"
+                  className="h-12 w-full px-4 text-base text-slate-700 outline-none placeholder:text-slate-400 sm:h-14 sm:px-6 sm:text-lg"
                 />
                 <button
                   onClick={openHome}
-                  className="grid h-16 w-24 place-items-center bg-[#ff6a00] text-white"
+                  className="grid h-12 w-16 place-items-center bg-[#ff6a00] text-white sm:h-14 sm:w-20 lg:w-24"
                 >
-                  <Search className="h-8 w-8" />
+                  <Search className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
                 </button>
               </div>
             </div>
@@ -591,15 +591,15 @@ export default function App() {
       )}
 
       {currentView === "home" ? (
-        <main className="mx-auto max-w-[1800px] px-4 py-6 sm:px-6 lg:px-8">
-          <section className="rounded-[28px] bg-white px-4 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.06)] lg:px-8">
-            <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
-              <button className="inline-flex items-center justify-center gap-3 rounded-xl bg-[#ff7a12] px-7 py-5 text-lg font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)]">
-                <Menu className="h-7 w-7" />
+        <main className="mx-auto max-w-[1800px] px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
+          <section className="rounded-[20px] bg-white px-3 py-4 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:rounded-[28px] sm:px-4 sm:py-5 lg:px-8">
+            <div className="flex flex-col gap-3 sm:gap-5 xl:flex-row xl:items-center xl:justify-between">
+              <button className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#ff7a12] px-5 py-3 text-base font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)] sm:gap-3 sm:px-7 sm:py-5 sm:text-lg">
+                <Menu className="h-5 w-5 sm:h-7 sm:w-7" />
                 All Categories
               </button>
 
-              <nav className="flex flex-wrap items-center justify-center gap-6 text-[17px] font-semibold text-[#2a2a2a]" id="home">
+              <nav className="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-[#2a2a2a] sm:gap-6 sm:text-[17px]" id="home">
                 {navLinks.map((link) => (
                   <button
                     key={link.label}
@@ -613,110 +613,110 @@ export default function App() {
 
               <button
                 onClick={() => buyNow(featuredHeroItem)}
-                className="inline-flex items-center justify-center rounded-xl bg-[#ff7a12] px-7 py-5 text-lg font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)]"
+                className="inline-flex items-center justify-center rounded-xl bg-[#ff7a12] px-5 py-3 text-base font-bold text-white shadow-[0_12px_24px_rgba(255,122,18,0.25)] sm:px-7 sm:py-5 sm:text-lg"
               >
                 Start Dropshipping
               </button>
             </div>
           </section>
 
-          <section className="mt-6 grid gap-4 xl:grid-cols-[1.2fr_280px]">
+          <section className="mt-4 grid gap-4 sm:mt-6 xl:grid-cols-[1.2fr_280px]">
             <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.06)]">
-              <div className="grid min-h-[520px] gap-6 bg-[linear-gradient(120deg,#fff7ef_0%,#ffffff_28%,#ffffff_58%,#ff7a12_58%,#ff6a00_100%)] p-6 lg:grid-cols-[240px_1fr_260px] lg:p-8">
+              <div className="grid gap-4 bg-[linear-gradient(120deg,#fff7ef_0%,#ffffff_28%,#ffffff_58%,#ff7a12_58%,#ff6a00_100%)] p-4 sm:gap-6 sm:p-6 lg:grid-cols-[240px_1fr_260px] lg:p-8">
                 <div className="hidden items-end justify-center lg:flex">
                   <div className="w-full overflow-hidden rounded-[34px] bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
                     <img src={featuredHeroItem.image} alt={featuredHeroItem.title} className="h-[330px] w-full rounded-[28px] object-cover" />
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center text-center">
-                  <div className="inline-flex rounded-full bg-[#fff2e6] px-5 py-2 text-lg font-black tracking-wide text-[#ff6a00] shadow-sm">
+                <div className="flex flex-col items-center justify-center py-4 text-center sm:py-6">
+                  <div className="inline-flex rounded-full bg-[#fff2e6] px-3 py-1.5 text-sm font-black tracking-wide text-[#ff6a00] shadow-sm sm:px-5 sm:py-2 sm:text-lg">
                     {currentSlide.eyebrow}
                   </div>
-                  <h1 className="mt-6 text-5xl font-black uppercase leading-none tracking-wide text-[#0085a6] drop-shadow-[0_4px_3px_rgba(0,0,0,0.2)] sm:text-6xl lg:text-7xl">
+                  <h1 className="mt-4 text-4xl font-black uppercase leading-none tracking-wide text-[#0085a6] drop-shadow-[0_4px_3px_rgba(0,0,0,0.2)] sm:mt-6 sm:text-5xl lg:text-7xl">
                     {currentSlide.heading}
                   </h1>
-                  <p className="mt-5 max-w-3xl text-xl font-semibold text-[#222222] sm:text-2xl">{currentSlide.text}</p>
-                  <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <p className="mt-3 max-w-xs text-base font-semibold text-[#222222] sm:mt-5 sm:max-w-3xl sm:text-xl lg:text-2xl">{currentSlide.text}</p>
+                  <div className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-8 sm:gap-3">
                     <button
                       onClick={() => buyNow(featuredHeroItem)}
-                      className="rounded-full border-[5px] border-white bg-[#ff7a12] px-10 py-5 text-3xl font-black uppercase text-white shadow-[0_14px_30px_rgba(0,0,0,0.2)] transition-transform hover:scale-[1.02]"
+                      className="rounded-full border-[3px] border-white bg-[#ff7a12] px-6 py-3 text-xl font-black uppercase text-white shadow-[0_14px_30px_rgba(0,0,0,0.2)] transition-transform hover:scale-[1.02] sm:border-[5px] sm:px-10 sm:py-5 sm:text-3xl"
                     >
                       {currentSlide.button}
                     </button>
                     <button
                       onClick={() => setCurrentView("cart")}
-                      className="rounded-full border-[4px] border-white bg-white/80 px-8 py-4 text-xl font-black uppercase text-[#ff6a00] shadow-lg backdrop-blur"
+                      className="rounded-full border-[3px] border-white bg-white/80 px-5 py-3 text-base font-black uppercase text-[#ff6a00] shadow-lg backdrop-blur sm:border-[4px] sm:px-8 sm:py-4 sm:text-xl"
                     >
                       View Cart
                     </button>
                   </div>
-                  <div className="mt-6 text-3xl font-black text-[#ff6a00]">www.orbi.pk</div>
-                  <div className="mt-8 flex items-center gap-3">
+                  <div className="mt-4 text-xl font-black text-[#ff6a00] sm:mt-6 sm:text-3xl">www.orbi.pk</div>
+                  <div className="mt-5 flex items-center gap-3 sm:mt-8">
                     {slideMessages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setActiveSlide(index)}
-                        className={`h-3 rounded-full transition-all ${activeSlide === index ? "w-10 bg-[#ff6a00]" : "w-3 bg-[#d9d9d9]"}`}
+                        className={`h-2.5 rounded-full transition-all sm:h-3 ${activeSlide === index ? "w-8 bg-[#ff6a00] sm:w-10" : "w-2.5 bg-[#d9d9d9] sm:w-3"}`}
                         aria-label={`Go to slide ${index + 1}`}
                       />
                     ))}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  <div className="relative overflow-hidden rounded-[24px] border-[3px] border-[#ffbd66] bg-[radial-gradient(circle_at_top,#ffb440_0%,#ff8b0f_40%,#ff6a00_100%)] p-5 text-white shadow-[0_18px_40px_rgba(255,106,0,0.18)]">
-                    <div className="absolute right-3 top-3 grid h-16 w-16 place-items-center rounded-full border-[3px] border-white bg-[#d90429] text-center text-sm font-black leading-tight">
+                <div className="flex flex-col gap-3 sm:gap-4">
+                  <div className="relative overflow-hidden rounded-[20px] border-[3px] border-[#ffbd66] bg-[radial-gradient(circle_at_top,#ffb440_0%,#ff8b0f_40%,#ff6a00_100%)] p-4 text-white shadow-[0_18px_40px_rgba(255,106,0,0.18)] sm:rounded-[24px] sm:p-5">
+                    <div className="absolute right-3 top-3 grid h-12 w-12 place-items-center rounded-full border-[3px] border-white bg-[#d90429] text-center text-xs font-black leading-tight sm:h-16 sm:w-16 sm:text-sm">
                       50%<br />OFF
                     </div>
-                    <div className="mt-20 inline-block rounded-full bg-[#d20022] px-4 py-2 text-sm font-black uppercase tracking-wide">
+                    <div className="mt-14 inline-block rounded-full bg-[#d20022] px-3 py-1.5 text-xs font-black uppercase tracking-wide sm:mt-20 sm:px-4 sm:py-2 sm:text-sm">
                       This Weekend Only!
                     </div>
-                    <div className="mt-5 text-6xl font-black uppercase leading-[0.85] drop-shadow-[0_4px_3px_rgba(0,0,0,0.28)]">
+                    <div className="mt-3 text-4xl font-black uppercase leading-[0.85] drop-shadow-[0_4px_3px_rgba(0,0,0,0.28)] sm:mt-5 sm:text-6xl">
                       HOT<br />SALE
                     </div>
-                    <p className="mt-3 text-sm font-medium text-white/90">New arrival</p>
+                    <p className="mt-2 text-xs font-medium text-white/90 sm:mt-3 sm:text-sm">New arrival</p>
                     <button
                       onClick={() => buyNow(featuredHeroItem)}
-                      className="mt-6 rounded-full bg-[#ffe34d] px-6 py-3 text-base font-black text-[#7a2300] shadow-lg"
+                      className="mt-4 rounded-full bg-[#ffe34d] px-5 py-2.5 text-sm font-black text-[#7a2300] shadow-lg sm:mt-6 sm:px-6 sm:py-3 sm:text-base"
                     >
                       Shop Now
                     </button>
                   </div>
 
-                  <div className="relative overflow-hidden rounded-[24px] bg-[#fff1e7] p-4 shadow-[0_16px_35px_rgba(0,0,0,0.08)]">
-                    <img src={heroLifestyle} alt="Fashion shopping" className="h-[160px] w-full rounded-[18px] object-cover" />
-                    <div className="absolute inset-x-4 bottom-4 rounded-[18px] bg-white/95 p-4 shadow-xl backdrop-blur">
-                      <div className="text-sm font-semibold text-[#ff6a00]">Premium picks</div>
-                      <div className="mt-1 text-lg font-bold text-[#222]">Fresh fashion arrivals for every season</div>
+                  <div className="relative overflow-hidden rounded-[20px] bg-[#fff1e7] p-3 shadow-[0_16px_35px_rgba(0,0,0,0.08)] sm:rounded-[24px] sm:p-4">
+                    <img src={heroLifestyle} alt="Fashion shopping" className="h-[120px] w-full rounded-[14px] object-cover sm:h-[160px] sm:rounded-[18px]" />
+                    <div className="absolute inset-x-3 bottom-3 rounded-[14px] bg-white/95 p-3 shadow-xl backdrop-blur sm:inset-x-4 sm:bottom-4 sm:rounded-[18px] sm:p-4">
+                      <div className="text-xs font-semibold text-[#ff6a00] sm:text-sm">Premium picks</div>
+                      <div className="mt-0.5 text-sm font-bold text-[#222] sm:mt-1 sm:text-lg">Fresh fashion arrivals for every season</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-[#f1f1f1] bg-white px-6 py-4 lg:px-10">
+              <div className="flex items-center justify-between border-t border-[#f1f1f1] bg-white px-4 py-3 sm:px-6 sm:py-4 lg:px-10">
                 <button
                   onClick={() => setActiveSlide((current) => (current - 1 + slideMessages.length) % slideMessages.length)}
-                  className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm"
+                  className="grid h-11 w-11 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-14 sm:w-14"
                 >
-                  <ChevronLeft className="h-7 w-7" />
+                  <ChevronLeft className="h-5 w-5 sm:h-7 sm:w-7" />
                 </button>
-                <div className="flex flex-wrap items-center justify-center gap-4 text-center text-sm text-[#666] sm:text-base">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00]">
-                    <ShieldCheck className="h-4 w-4" /> Secure shopping
+                <div className="flex flex-wrap items-center justify-center gap-2 text-center text-xs text-[#666] sm:gap-4 sm:text-sm sm:text-base">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-[#fff4ea] px-3 py-1.5 font-semibold text-[#ff6a00] sm:gap-2 sm:px-4 sm:py-2">
+                    <ShieldCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Secure shopping
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00]">
+                  <div className="hidden items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00] sm:inline-flex">
                     <Truck className="h-4 w-4" /> Fast delivery
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#fff4ea] px-4 py-2 font-semibold text-[#ff6a00]">
-                    <Gift className="h-4 w-4" /> Daily offers
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-[#fff4ea] px-3 py-1.5 font-semibold text-[#ff6a00] sm:gap-2 sm:px-4 sm:py-2">
+                    <Gift className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Daily offers
                   </div>
                 </div>
                 <button
                   onClick={() => setActiveSlide((current) => (current + 1) % slideMessages.length)}
-                  className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm"
+                  className="grid h-11 w-11 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-14 sm:w-14"
                 >
-                  <ChevronRight className="h-7 w-7" />
+                  <ChevronRight className="h-5 w-5 sm:h-7 sm:w-7" />
                 </button>
               </div>
             </div>
@@ -727,25 +727,25 @@ export default function App() {
             </div>
           </section>
 
-          <section className="mt-7 rounded-[28px] bg-white px-4 py-7 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:px-6 lg:px-8" id="collections">
+          <section className="mt-5 rounded-[20px] bg-white px-3 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:mt-7 sm:rounded-[28px] sm:px-6 sm:py-7 lg:px-8" id="collections">
             <div className="flex items-center justify-between gap-4">
-              <h2 className="text-3xl font-bold text-[#1e1e1e] sm:text-5xl">Shop By Categories</h2>
+              <h2 className="text-xl font-bold text-[#1e1e1e] sm:text-3xl lg:text-5xl">Shop By Categories</h2>
               <div className="hidden items-center gap-3 md:flex">
-                <button className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm">
-                  <ChevronLeft className="h-6 w-6" />
+                <button className="grid h-11 w-11 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-14 sm:w-14">
+                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
-                <button className="grid h-14 w-14 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm">
-                  <ChevronRight className="h-6 w-6" />
+                <button className="grid h-11 w-11 place-items-center rounded-2xl border border-[#efefef] text-[#ff6a00] shadow-sm sm:h-14 sm:w-14">
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
               </div>
             </div>
-            <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-10">
+            <div className="mt-6 grid grid-cols-3 gap-3 sm:mt-10 sm:grid-cols-4 sm:gap-6 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-10">
               {categories.map((item) => (
                 <div key={item.label} className="text-center">
-                  <div className="mx-auto grid h-24 w-24 place-items-center rounded-full text-white shadow-[0_15px_30px_rgba(0,0,0,0.08)]" style={{ backgroundColor: item.color }}>
-                    <item.icon className="h-11 w-11" />
+                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full text-white shadow-[0_15px_30px_rgba(0,0,0,0.08)] sm:h-20 sm:w-20 lg:h-24 lg:w-24" style={{ backgroundColor: item.color }}>
+                    <item.icon className="h-8 w-8 sm:h-9 sm:w-9 lg:h-11 lg:w-11" />
                   </div>
-                  <div className="mx-auto mt-5 max-w-[160px] text-xl font-medium leading-8 text-[#222]">{item.label}</div>
+                  <div className="mx-auto mt-2 max-w-[100px] text-xs font-medium leading-5 text-[#222] sm:mt-4 sm:max-w-[140px] sm:text-base sm:leading-7 lg:max-w-[160px] lg:text-lg lg:leading-8">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -791,7 +791,7 @@ export default function App() {
             </div>
 
             {loading ? (
-              <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-6">
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
                 {Array.from({ length: 6 }).map((_, index) => (
                   <div key={index} className="rounded-[22px] border border-[#f0f0f0] bg-white p-4 shadow-sm">
                     <div className="h-60 animate-pulse rounded-[18px] bg-[#f4f4f4]" />
@@ -805,7 +805,7 @@ export default function App() {
             ) : flashSaleProducts.length === 0 ? (
               <div className="mt-8 rounded-2xl bg-[#fff4ea] px-5 py-4 text-lg font-medium text-[#b44900]">No products matched your search.</div>
             ) : (
-              <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-6">
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
                 {flashSaleProducts.map((product, index) => (
                   <ProductCard
                     key={product.id}
@@ -878,17 +878,17 @@ export default function App() {
       )}
 
       <footer className="mt-10 bg-[#202327] text-white">
-        <div className="mx-auto max-w-[1800px] px-4 py-10 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-            <div>
+        <div className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+            <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex items-center gap-3">
-                <div className="grid h-14 w-14 place-items-center rounded-full border-[5px] border-white text-xl font-black">O</div>
+                <div className="grid h-12 w-12 place-items-center rounded-full border-[4px] border-white text-lg font-black sm:h-14 sm:w-14 sm:border-[5px] sm:text-xl">O</div>
                 <div>
-                  <div className="text-3xl font-black tracking-[0.28em]">ORBI</div>
+                  <div className="text-2xl font-black tracking-[0.28em] sm:text-3xl">ORBI</div>
                   <div className="text-xs font-semibold tracking-[0.45em] text-white/70">STORE</div>
                 </div>
               </div>
-              <p className="mt-5 max-w-md text-base leading-8 text-white/70">
+              <p className="mt-4 max-w-md text-sm leading-7 text-white/70 sm:text-base sm:leading-8">
                 This store is now functional: add products to cart, review totals, complete checkout, and continue shopping after a successful order.
               </p>
             </div>
@@ -902,10 +902,10 @@ export default function App() {
       {showTopButton && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 z-50 grid h-14 w-14 place-items-center rounded-xl bg-[#ff6a00] text-white shadow-[0_16px_30px_rgba(255,106,0,0.28)]"
+          className="fixed bottom-4 right-3 z-50 grid h-11 w-11 place-items-center rounded-xl bg-[#ff6a00] text-white shadow-[0_16px_30px_rgba(255,106,0,0.28)] sm:bottom-6 sm:right-5 sm:h-14 sm:w-14"
           aria-label="Back to top"
         >
-          <ArrowUp className="h-6 w-6" />
+          <ArrowUp className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
       )}
     </div>
