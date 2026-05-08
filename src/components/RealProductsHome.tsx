@@ -203,7 +203,7 @@ export default function RealProductsHome({
   onBuyNow: (product: RealProductItem) => void;
 }) {
   return (
-    <section className="mt-9 space-y-7" id="real-products">
+    <section className="mt-9 space-y-10" id="real-products">
       {showcaseSections.map((section) => (
         <div
           key={section.id}
@@ -226,7 +226,7 @@ export default function RealProductsHome({
             </div>
           </div>
 
-          <div className="grid gap-5 p-5 md:grid-cols-2 xl:grid-cols-4 xl:p-8">
+          <div className="grid gap-6 p-5 pb-8 md:grid-cols-2 md:gap-6 xl:grid-cols-4 xl:p-8 xl:pb-10">
             {section.products.map((product) => (
               <article
                 key={`${section.id}-${product.title}`}
@@ -238,7 +238,7 @@ export default function RealProductsHome({
                   </div>
                   <img src={product.image} alt={product.title} className="h-full w-full object-cover" loading="lazy" />
                 </div>
-                <div className="p-5">
+                <div className="p-5 pb-6">
                   <div className="text-sm font-bold uppercase tracking-[0.22em] text-[#ff6a00]">{product.category}</div>
                   <h3 className="mt-3 line-clamp-2 min-h-[64px] text-[21px] font-semibold leading-8 text-[#222]">
                     {product.title}
